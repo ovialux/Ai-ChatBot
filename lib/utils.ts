@@ -15,5 +15,4 @@ function errorResponse(message: string, status: number): Response {
     headers: { ...corsHeaders, "Content-Type": "application/json" },
   });
 }
-
 export { getClientIp, errorResponse };

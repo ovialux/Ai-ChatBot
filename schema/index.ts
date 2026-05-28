@@ -1,24 +1,19 @@
 import { chatConfig } from "@/config/chat";
 import z from "zod";
 
-const uiMessageSchema = z.object({
+const messageSchema = z.object({
   role: z.enum(["user", "assistant"]),
-  content: z.string().optional(),
+  // support both UIMessage (parts) and plain (content) shapes
   parts: z
     .array(z.object({ type: z.string(), text: z.string().optional() }))
     .optional(),
+  content: z.string().optional(),
 });
 
 const requestSchema = z.object({
-  messages: z
-    .array(uiMessageSchema)
-    .min(1, "At least one message is required")
-    .max(
-      chatConfig.maxMessages,
-      `Cannot exceed ${chatConfig.maxMessages} messages`,
-    ),
+  messages: z.array(messageSchema).min(1).max(chatConfig.maxMessages),
 });
 
 export type ChatRequest = z.infer<typeof requestSchema>;
-export type ChatMessage = z.infer<typeof uiMessageSchema>;
-export { requestSchema, uiMessageSchema };
+export type ChatMessage = z.infer<typeof messageSchema>;
+export { requestSchema, messageSchema };

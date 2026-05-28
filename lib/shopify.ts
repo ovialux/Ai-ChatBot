@@ -2,7 +2,6 @@
 import { env } from "@/lib/env";
 
 const STOREFRONT_API_URL = `https://${env.SHOPIFY_STORE_DOMAIN}/api/2024-01/graphql.json`;
-console.log(STOREFRONT_API_URL);
 
 const PRODUCTS_QUERY = `
   query GetProducts {
@@ -40,6 +39,7 @@ async function fetchShopifyProducts(): Promise<ShopifyProduct[]> {
       "X-Shopify-Storefront-Access-Token": env.SHOPIFY_STOREFRONT_ACCESS_TOKEN,
     },
     body: JSON.stringify({ query: PRODUCTS_QUERY }),
+    next: { revalidate: 300, tags: ["shopify-products"] },
   });
 
   if (!res.ok) {
@@ -47,7 +47,7 @@ async function fetchShopifyProducts(): Promise<ShopifyProduct[]> {
   }
 
   const json: ShopifyResponse = await res.json();
-  console.log(json);
+
   return json.data.products.edges.map((edge) => edge.node);
 }
 

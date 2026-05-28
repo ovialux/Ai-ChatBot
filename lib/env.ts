@@ -6,10 +6,10 @@ export const env = createEnv({
     GOOGLE_GENERATIVE_AI_API_KEY: z.string(),
     ALLOWED_ORIGIN: z.string(),
     SHOPIFY_STORE_DOMAIN: z.string(),
+    SHOPIFY_STOREFRONT_ACCESS_TOKEN: z.string(),
     NODE_ENV: z
       .enum(["development", "production", "test"])
       .default("development"),
-    SHOPIFY_STOREFRONT_ACCESS_TOKEN: z.string(),
   },
 
   runtimeEnv: {
