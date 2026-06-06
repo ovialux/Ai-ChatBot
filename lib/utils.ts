@@ -1,5 +1,4 @@
 import { NextRequest } from "next/server";
-import { corsHeaders } from "./cors";
 
 function getClientIp(req: NextRequest): string {
   return (
