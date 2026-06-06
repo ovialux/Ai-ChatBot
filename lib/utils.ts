@@ -12,7 +12,7 @@ function getClientIp(req: NextRequest): string {
 function errorResponse(message: string, status: number): Response {
   return new Response(JSON.stringify({ error: message }), {
     status,
-    headers: { ...corsHeaders, "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json" },
   });
 }
 export { getClientIp, errorResponse };
