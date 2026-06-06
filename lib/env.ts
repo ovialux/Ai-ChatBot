@@ -4,7 +4,7 @@ import * as z from "zod";
 export const env = createEnv({
   server: {
     GOOGLE_GENERATIVE_AI_API_KEY: z.string(),
-    ALLOWED_ORIGIN: z.string(),
+    ALLOWED_ORIGINS: z.string(),
     SHOPIFY_STORE_DOMAIN: z.string(),
     SHOPIFY_STOREFRONT_ACCESS_TOKEN: z.string(),
     NODE_ENV: z
@@ -14,7 +14,7 @@ export const env = createEnv({
 
   runtimeEnv: {
     GOOGLE_GENERATIVE_AI_API_KEY: process.env.GOOGLE_GENERATIVE_AI_API_KEY,
-    ALLOWED_ORIGIN: process.env.ALLOWED_ORIGIN,
+    ALLOWED_ORIGINS: process.env.ALLOWED_ORIGINS,
     NODE_ENV: process.env.NODE_ENV,
     SHOPIFY_STORE_DOMAIN: process.env.SHOPIFY_STORE_DOMAIN,
     SHOPIFY_STOREFRONT_ACCESS_TOKEN:
