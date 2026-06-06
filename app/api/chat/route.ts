@@ -6,7 +6,6 @@ import { isRateLimited } from "@/lib/rate-limit";
 import { requestSchema } from "@/schema";
 import { getProducts } from "@/lib/shopify";
 import { buildSystemPrompt } from "@/lib/system-prompt";
-import { corsHeaders } from "@/lib/cors";
 
 export async function POST(req: NextRequest) {
   const ip = getClientIp(req);
@@ -43,7 +42,7 @@ export async function POST(req: NextRequest) {
       abortSignal: AbortSignal.timeout(15_000),
     });
 
-    return result.toUIMessageStreamResponse({ headers: corsHeaders });
+    return result.toUIMessageStreamResponse();
   } catch (err) {
     console.error("[chat/route] streamText error:", err);
     return errorResponse(
