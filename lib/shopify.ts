@@ -1,11 +1,12 @@
 // lib/shopify.ts
 import { env } from "@/lib/env";
+import { storeConfig } from "@/config/store";
 
 const STOREFRONT_API_URL = `https://${env.SHOPIFY_STORE_DOMAIN}/api/2024-01/graphql.json`;
 
 const PRODUCTS_QUERY = `
   query GetProducts {
-    products(first: 10) {
+    products(first: ${storeConfig.maxProducts}) {
       edges {
         node {
           title

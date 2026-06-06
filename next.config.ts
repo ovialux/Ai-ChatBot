@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: "Access-Control-Allow-Origin",
-            value: env.ALLOWED_ORIGINS ?? "https://ovialux.com/",
+            value: env.ALLOWED_ORIGINS,
           },
           {
             key: "Access-Control-Allow-Methods",
